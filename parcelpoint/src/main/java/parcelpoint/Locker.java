@@ -2,10 +2,10 @@ package parcelpoint;
 
 public class Locker {
     private int number;
-    private int size;          // 1 = small, 2 = medium, 3 = large
+    private ParcelSize size;
     private Parcel parcel;
 
-    public Locker(int number, int size) {
+    public Locker(int number, ParcelSize size) {
         this.number = number;
         this.size = size;
     }
@@ -14,7 +14,7 @@ public class Locker {
         return number;
     }
 
-    public int getSize() {
+    public ParcelSize getSize() {
         return size;
     }
 

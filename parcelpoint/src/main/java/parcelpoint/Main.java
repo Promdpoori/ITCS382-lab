@@ -10,7 +10,7 @@ public class Main {
         while (in.hasNextLine()) {
             String[] words = in.nextLine().trim().split(" ");
             if (words[0].equals("store")) {
-                Parcel parcel = new Parcel(words[1], words[2], Integer.parseInt(words[3]));
+                Parcel parcel = new Parcel(words[1], words[2], ParcelSize.fromNumber(Integer.parseInt(words[3])));
                 Locker locker = service.storeParcel(parcel);
                 if (locker != null) {
                     System.out.println("SMS to " + parcel.getStudentId() + ": parcel "
