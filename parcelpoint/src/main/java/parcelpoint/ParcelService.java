@@ -3,6 +3,7 @@ package parcelpoint;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,8 +20,12 @@ public class ParcelService {
         lockers.add(new Locker(3, 3));
     }
 
-    public List<Locker> getLockers() {
-        return lockers;
+    public long countFreeLockers() {
+        return lockers.stream().filter(Locker::isFree).count();
+    }
+
+    public List<Parcel> getParcels() {
+        return Collections.unmodifiableList(parcels);
     }
 
     public Locker storeParcel(Parcel parcel) {
@@ -29,8 +34,6 @@ public class ParcelService {
                 locker.setParcel(parcel);
                 parcel.markStored();
                 parcels.add(parcel);
-                System.out.println("SMS to " + parcel.getStudentId() + ": parcel "
-                        + parcel.getCode() + " is in locker " + locker.getNumber());
                 saveToFile();
                 return locker;
             }
@@ -61,16 +64,6 @@ public class ParcelService {
             return (days - 3) * 15.0;
         }
         return (days - 3) * 20.0;
-    }
-
-    public void printParcels(boolean forStaff) {
-        for (Parcel parcel : parcels) {
-            if (forStaff) {
-                System.out.println(parcel.getCode() + " " + parcel.getStudentId() + " " + parcel.getStatus());
-            } else if (parcel.getStatus() == ParcelStatus.STORED) {
-                System.out.println(parcel.getCode() + " is waiting");
-            }
-        }
     }
 
     private void saveToFile() {
