@@ -5,8 +5,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ParcelService {
+    private static final Logger LOGGER = Logger.getLogger(ParcelService.class.getName());
+
     private List<Locker> lockers = new ArrayList<>();
     private List<Parcel> parcels = new ArrayList<>();
     private int maxParcels = 100;
@@ -72,12 +76,12 @@ public class ParcelService {
     }
 
     private void saveToFile() {
-        try {
-            FileWriter writer = new FileWriter("parcels.csv");
+        try (FileWriter writer = new FileWriter("parcels.csv")) {
             for (Parcel parcel : parcels) {
                 writer.write(parcel.getCode() + "," + parcel.status + "\n");
             }
         } catch (IOException e) {
+            LOGGER.log(Level.WARNING, "Could not save parcels.csv", e);
         }
     }
 }
