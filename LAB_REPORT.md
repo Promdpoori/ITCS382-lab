@@ -179,7 +179,7 @@ I will run SonarQube for IDE from the start and fix or justify each issue before
 
 The lab's Level 3 AI Collaboration requirement applies. AI was used for the tool setup, the SonarQube run, the reviews, the two BikeShare variants, the ParcelPoint fixes, debugging and the drafting of this report. The findings and changes were checked against the source code, the SonarQube results, the Maven builds, the program runs and the CSV files, as described in each row below. All uses listed took place on 2026-10-25.
 
-| Date | AI tool and exact model | Purpose and files or parts produced or changed | How the output was checked |
+| Date | AI tool and exact model | Purpose and files or parts produced or changed | How I checked the output |
 | --- | --- | --- | --- |
 | 2026-10-25 | Claude Code (Claude desktop app), Claude Opus 5.5 (`claude-opus-5-5`) | Set up the tools (Maven 3.10.0, Extension Pack for Java, SonarQube for IDE 6.2.0), collected the SonarQube issues for Tables 1 and 4 with the analyzer of SonarQube for IDE, and made every commit in the repository. | Confirmed the versions with `java -version` and `mvn -version`; ran SonarQube again after the fixes; checked the commit history with `git log --oneline`. |
 | 2026-10-25 | Claude Code, Claude Opus 5.5 | Ran Prompt A on the ParcelPoint starter for Task 2 and wrote `reviews/parcelpoint-review.md`; drafted Table 2 and the verification notes. | Compared each finding with the source line that it names; reproduced the zero fee and the empty parcels.csv with the required run. |
