@@ -4,13 +4,13 @@ public class Parcel {
     private String code;
     private String studentId;
     private int size;          // 1 = small, 2 = medium, 3 = large
-    public String status;
+    private ParcelStatus status;
 
     public Parcel(String code, String studentId, int size) {
         this.code = code;
         this.studentId = studentId;
         this.size = size;
-        this.status = "NEW";
+        this.status = ParcelStatus.NEW;
     }
 
     public String getCode() {
@@ -23,5 +23,17 @@ public class Parcel {
 
     public int getSize() {
         return size;
+    }
+
+    public ParcelStatus getStatus() {
+        return status;
+    }
+
+    public void markStored() {
+        status = ParcelStatus.STORED;
+    }
+
+    public void markPickedUp() {
+        status = ParcelStatus.PICKED_UP;
     }
 }
