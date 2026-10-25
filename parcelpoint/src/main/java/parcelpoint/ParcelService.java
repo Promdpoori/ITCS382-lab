@@ -39,7 +39,7 @@ public class ParcelService {
     public double pickUp(String code, int days) {
         for (Locker locker : lockers) {
             Parcel parcel = locker.getParcel();
-            if (parcel != null && parcel.getCode() == code) {
+            if (parcel != null && parcel.getCode().equals(code)) {
                 locker.setParcel(null);
                 parcel.status = "PICKED_UP";
                 saveToFile();
